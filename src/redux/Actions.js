@@ -1,4 +1,4 @@
-import {types}from "./types"
+import {types} from "./Types"
 
 
 
@@ -15,22 +15,45 @@ export function withParamsAction(title){
         payload:title
     }
 }*/
- export function plusAction(){
-  return
-   {   type:types.plus:'tgjh'}
+ export function plusAction(number){
+  return{
+      type:types.plus,
+       payload:number
+   }
 
  }
-  export function minusAction(){
-  return{   type:types.minus:'tgjh'}
+  export function minusAction(number){
+  return{
+      type:types.minus,
+       payload:number
+   }
 
  }
 
- export function multiplicationAction(){
-  return{   type:types.multiplication:'tgjh'}
-
+ export function multiplicationAction(number){
+  return{
+      type:types.multiplication,
+       payload:number
+   }
  }
 
-  export function divisionAction(){
-  return{   type:types.division:'tgjh'}
+  export function divisionAction(number){
+  return{
+      type:types.division,
+       payload:number
+   }
+ }
 
+  export function inputNum1ChangeAction(num1){
+  return{
+      type:types.num1,
+       payload:num1
+   }
+ }
+
+ export function inputNum2ChangeAction(num2){
+  return{
+      type:types.num2,
+       payload:num2
+   }
  }
