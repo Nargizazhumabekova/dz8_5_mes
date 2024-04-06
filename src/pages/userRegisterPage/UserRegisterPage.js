@@ -3,15 +3,29 @@ import {Row, Col, Form, Button, Container, Spinner} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUserAction } from '../../redux/actions'
 
+
+
+
+/*function validatePasswords()
+{
+    const passwords2 = document.getElementById("passwords1").value;
+    const passwords1 = document.getElementById("passwords2").value;
+    if(passwords2 === passwords1)
+
+    return true;
+}*/
+
 function UserRegisterPage() {
 
     const {preloader} = useSelector(state => state.preloaderReducer)
     const dispatch = useDispatch()
 
-    const [user, setUser] = useState({
+    const [user, setUser,authSuccess, setAuthSuccess] = useState({
         name: '',
         username: '',
-        email: ''
+        email: '',
+        passwords1: '',
+        passwords2: '',
     })
 
     const formValue = (event) => {
@@ -24,8 +38,10 @@ function UserRegisterPage() {
     const addUser = (event) => {
         event.preventDefault()
         dispatch(addUserAction(user))
+        localStorage.setItem('user', JSON.stringify(user));
 
-        if (user.name === '' || user.username === '' || user.email === '') {
+        if (user.name === '' || user.username === '' || user.email === ''||user.passwords1===''
+        ||user.passwords2===''||user.passwords1===user.passwords2) {
             alert('Дальнейшее действие невозможно! Заполни все поля!')
             return
         }
@@ -41,7 +57,7 @@ function UserRegisterPage() {
                     <Form.Group className='mb-3' controlId="name">
                         <Form.Control
                             type="text"
-                            placeholder='name'
+                            placeholder='введите имя'
                             name='name'
                             onChange={formValue}
                         />
@@ -51,8 +67,24 @@ function UserRegisterPage() {
                     <Form.Group className='mb-3' controlId="username">
                         <Form.Control
                             type="text"
-                            placeholder='username'
+                            placeholder='введите фамилию'
                             name='username'
+                            onChange={formValue}
+                        />
+                    </Form.Group>
+                     <Form.Group className='mb-3' controlId="passwords1">
+                        <Form.Control
+                            type="text"
+                            placeholder='введите пароль'
+                            name='password1'
+                            onChange={formValue}
+                        />
+                    </Form.Group>
+                     <Form.Group className='mb-3' controlId="passwords2">
+                        <Form.Control
+                            type="text"
+                            placeholder='повторите пароль'
+                            name='повторите пароль'
                             onChange={formValue}
                         />
                     </Form.Group>
@@ -61,7 +93,7 @@ function UserRegisterPage() {
                     <Form.Group className='mb-3' controlId="email">
                         <Form.Control
                             type="text"
-                            placeholder='email'
+                            placeholder='электронная почта'
                             name='email'
                             onChange={formValue}
                         />
@@ -69,7 +101,7 @@ function UserRegisterPage() {
                 </Col>
                 <Col lg={3}>
                     <Button type='submit' variant='success' className='w-100'>
-                        register user
+                        нажмите  регистрацию
                     </Button>
                 </Col>
             </Row>
@@ -80,5 +112,6 @@ function UserRegisterPage() {
 
   )
 }
+
 
 export default UserRegisterPage

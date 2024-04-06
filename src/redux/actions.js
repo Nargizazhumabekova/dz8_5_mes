@@ -23,6 +23,7 @@ export function addUserAction(user) {
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify(user)
+
         }
 
         const response = await fetch('https://jsonplaceholder.typicode.com/todos', options)
@@ -33,3 +34,13 @@ export function addUserAction(user) {
         }
     }
 }
+/*function validatePasswords()
+{
+    const passwords2 = document.getElementById("passwords1").value;
+    const passwords1 = document.getElementById("passwords2").value;
+    if(passwords2 === passwords1)
+    {
+        alert("passwords don't match");
+        return false;
+    }
+    return true;*/

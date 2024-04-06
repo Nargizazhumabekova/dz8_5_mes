@@ -1,4 +1,5 @@
 import { types } from "../types";
+import {useState} from "react";
 
 const initialState = {
     preloader: false
